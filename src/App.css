@@ -1,11 +1,31 @@
+body {
+
+  background-color: bisque;
+}
+
 .App {
+
   text-align: center;
+  display: flex;
+  
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
+
+.card {
+  text-align: center;
+  margin: auto;
+  border-color: #282c34;
+}
+
+h1 {
+color: blue;
+text-align: center;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -36,3 +56,4 @@
     transform: rotate(360deg);
   }
 }
+
