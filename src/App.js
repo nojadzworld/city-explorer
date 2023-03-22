@@ -3,13 +3,17 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import './App.css';
+import Weather from './Weather';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       city: '',
-      cityData: {}
+      cityData: {},
+      error: false,
+      errorMessage: '',
+      weatherData: []
     }
   }
 
@@ -20,6 +24,7 @@ class App extends React.Component {
     })
 
   }
+
 
   getCityData = async (event) => {
     event.preventDefault()
@@ -32,30 +37,51 @@ class App extends React.Component {
 
       console.log(cityDatafromAxios.data[0])
       this.setState({
-        cityData: cityDatafromAxios.data[0]
+        cityData: cityDatafromAxios.data[0],
+        error: false
       });
+      let lat = cityDatafromAxios.data[0].lat;
+      let lon = cityDatafromAxios.data[0].lon;
+
+      this.handleGetWeather(lat, lon)
     } catch (error) {
 
       this.setState({
         error: true,
-        errorMessage: error.message
+        errorMessage: error.errorMessage
       })
+
+
+    }
+  }
+  handleGetWeather = async (lat, lon) => {
+
+    try {
+      let url = `${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.state.city}&lat=${lat}&lon${lon}`;
+      let weatherDataFromAxios = await axios.get(url);
+
+      console.log('Weather: ', weatherDataFromAxios.data)
+
+      this.setState({
+        weatherData: weatherDataFromAxios.data
+      })
+    } catch (error) {
+
     }
   }
 
   render() {
     return (
       <>
-        <h1>City Explorer</h1>
+        <h1>Enter your City in the Search Bar!</h1>
         <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=14`}/>
+          <Card.Img variant="top" src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=14`} />
           <Card.Body>
 
             <Card.Title>{
               this.state.error
                 ? <p>{this.state.errorMessage}</p>
                 : <p>{this.state.cityData.display_name} {this.state.cityData.lat} {this.state.cityData.lon}</p>
-               
             }
             </Card.Title>
             <Card.Text>
@@ -64,6 +90,7 @@ class App extends React.Component {
                   <input type="text" onChange={this.handleCityInput} />
                 </label>
                 <button type="submit">Explore!</button>
+                <Weather weatherData={this.state.weatherData} />
               </form>
             </Card.Text>
           </Card.Body>
