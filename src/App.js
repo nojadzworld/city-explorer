@@ -86,7 +86,7 @@ class App extends React.Component {
             </Card.Title>
             <Card.Text>
               <form onSubmit={this.getCityData}>
-                <label > Enter in a City:
+                <label > Enter in a City!:
                   <input type="text" onChange={this.handleCityInput} />
                 </label>
                 <button type="submit">Explore!</button>
