@@ -1,21 +1,33 @@
-# Project Name
+# City Explorer
 
-**Author**: Your Name Goes Here
+**Author**: DaJon Ewing
+
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
-<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
+This app allows a user to enter a city name into the form and it will display the city's latitude and longitude and map of the area.
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+1.Enter a city name in the search field and click the "Explore!" button.
+
+2.The app will display the city name, latitude, and longitude, along with a map of the city.
 
 ## Architecture
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+REACT.js
 
 ## Change Log
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+03-22-20 23 4:07pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
 ## Credit and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+
+Name of feature: Connected back-end to front-end
+
+Estimate of time needed to complete: 2hrs
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: 2hrs
