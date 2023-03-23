@@ -2,7 +2,7 @@
 
 **Author**: DaJon Ewing
 
-**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+**Version**: 2.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
 This app allows a user to enter a city name into the form and it will display the city's latitude and longitude and map of the area.
@@ -19,6 +19,7 @@ This app allows a user to enter a city name into the form and it will display th
 - Bootstrap is being imported for design purposes
 - Using LocationIQ to pull city data
 - Axios is being used to connect to API(s)
+
 ## Change Log
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 
