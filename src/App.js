@@ -12,10 +12,10 @@ class App extends React.Component {
     this.state = {
       city: '',
       cityData: {},
-      weatherData: [],
-      movieInfo: [],
+      weatherDataFromAxios: [],
       error: false,
       errorMessage: '',
+      movieInfo: [],
 
     }
   }
@@ -46,7 +46,7 @@ class App extends React.Component {
       let lat = cityDatafromAxios.data[0].lat;
       let lon = cityDatafromAxios.data[0].lon;
 
-      this.handleGetWeather(lat, lon)
+      this.handleGetWeather(lat, lon);
       this.getMovies();
     } catch (error) {
 
@@ -67,10 +67,11 @@ class App extends React.Component {
       console.log('Weather: ', weatherDataFromAxios.data)
 
       this.setState({
-        weatherData: weatherDataFromAxios.data
+        weatherDataFromAxios: weatherDataFromAxios.data,
+        error: false
       })
     } catch (error) {
-
+    console.log(error);
     }
   }
 
@@ -113,7 +114,7 @@ class App extends React.Component {
                   <input type="text" onChange={this.handleCityInput} />
                 </label>
                 <button type="submit">Explore!</button>
-                <Weather weatherData={this.state.weatherData} />
+                <Weather data={this.state.weatherDataFromAxios} />
                 <Movies movieInfo={this.state.movieInfo} />
               </form>
             </Card.Text>
