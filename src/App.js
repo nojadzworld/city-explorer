@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import './App.css';
 import Weather from './Weather';
+import Movies from './Movies'
 
 class App extends React.Component {
   constructor(props) {
@@ -11,9 +12,11 @@ class App extends React.Component {
     this.state = {
       city: '',
       cityData: {},
+      weatherData: [],
+      movieInfo: [],
       error: false,
       errorMessage: '',
-      weatherData: []
+
     }
   }
 
@@ -44,6 +47,7 @@ class App extends React.Component {
       let lon = cityDatafromAxios.data[0].lon;
 
       this.handleGetWeather(lat, lon)
+      this.getMovies();
     } catch (error) {
 
       this.setState({
@@ -70,11 +74,30 @@ class App extends React.Component {
     }
   }
 
+  getMovies = async () => {
+    try {
+      let url =`${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.city}`
+      let movieResults = await axios.get(url);
+      console.log(movieResults.data);
+
+      this.setState({
+        movieInfo: movieResults.data
+      });
+
+    } catch (error) {
+      console.log('getMovies' + error.message);
+      this.setState({
+        error: true,
+        errorMessage: error.message
+      })
+    }
+  }
+
   render() {
     return (
       <>
         <h1>Enter your City in the Search Bar!</h1>
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '45rem' }}>
           <Card.Img variant="top" src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=14`} />
           <Card.Body>
 
@@ -91,6 +114,7 @@ class App extends React.Component {
                 </label>
                 <button type="submit">Explore!</button>
                 <Weather weatherData={this.state.weatherData} />
+                <Movies movieInfo={this.state.movieInfo} />
               </form>
             </Card.Text>
           </Card.Body>

@@ -13,8 +13,12 @@ This app allows a user to enter a city name into the form and it will display th
 2.The app will display the city name, latitude, and longitude, along with a map of the city.
 
 ## Architecture
-REACT.js
-
+![alt text](src/img/dataflow.png)
+- React was utilized to set up the webpage
+- Being deployed through Netlify
+- Bootstrap is being imported for design purposes
+- Using LocationIQ to pull city data
+- Axios is being used to connect to API(s)
 ## Change Log
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 
